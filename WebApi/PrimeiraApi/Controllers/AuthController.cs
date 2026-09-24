@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PrimeiraApi.Model;
-using PrimeiraApi.Services;
+using PrimeiraApi.Application.Services;
+using PrimeiraApi.Domain.Model;
 
 namespace WebApi.Controllers
 {

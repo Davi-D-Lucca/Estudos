@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi;
-using PrimeiraApi.Infraestrutura;
-using PrimeiraApi.Model;
+using PrimeiraApi.Domain.Model;
+using PrimeiraApi.Infraestrutura.Repositories;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -56,8 +56,13 @@ var app = builder.Build();
 // Habilita o Swagger no ambiente de desenvolvimento
 if (app.Environment.IsDevelopment())
 {
+    app.UseExceptionHandler("/error-development");
     app.UseSwagger();
     app.UseSwaggerUI(); // Ativa a rota /swagger
+}else
+{
+    app.UseExceptionHandler("/error");
+
 }
 
 app.UseHttpsRedirection();
