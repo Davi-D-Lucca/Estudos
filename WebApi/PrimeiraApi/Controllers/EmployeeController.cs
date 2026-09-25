@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using PrimeiraApi.Model;
-using PrimeiraApi.ViewModel;
+using PrimeiraApi.Application.ViewModel;
+using PrimeiraApi.Domain.Model;
 
 namespace PrimeiraApi.Controllers
 {
@@ -10,10 +10,12 @@ namespace PrimeiraApi.Controllers
     public class EmployeeController : ControllerBase
     {
         private readonly IEmployeeRepository _employeeRepository;
+        private readonly ILogger<EmployeeController> _logger;
 
-        public EmployeeController(IEmployeeRepository employeeRepository)
+        public EmployeeController(IEmployeeRepository employeeRepository, ILogger<EmployeeController> logger)
         {
             _employeeRepository = employeeRepository ?? throw new ArgumentNullException();
+            _logger = logger ?? throw new ArgumentNullException();
         }
 
         [Authorize]
@@ -35,12 +37,18 @@ namespace PrimeiraApi.Controllers
             return Ok();
         }
 
-
-        [Authorize]
+        //[Authorize]
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult Get(int pageNumber, int pageQuantity)
         {
-            var employees = _employeeRepository.Get();
+            _logger.Log(LogLevel.Error, "Teve 1 erro");
+
+            //throw new Exception("Erro de teste");
+
+            var employees = _employeeRepository.Get(pageNumber, pageQuantity);
+
+            _logger.LogInformation("Teste");
+
             return Ok(employees);
         }
 

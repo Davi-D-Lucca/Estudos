@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace PrimeiraApi.Model
+namespace PrimeiraApi.Domain.Model
 {
     [Table("employee")]
     public class Employee
