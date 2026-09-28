@@ -58,14 +58,14 @@ src/
     └── EmprestimoLivroApi.Exception        → ExceptionsBase/
 ```
 
-| Projeto | Para que serve |
-|---|---|
-| **Api** | Porta de entrada HTTP: controllers, filtros, Swagger e o `Program.cs` que registra tudo na injeção de dependência |
-| **Application** | Os casos de uso (regras da aplicação) e o mapeamento entre entidades e JSON |
-| **Domain** | O núcleo: entidades, enums e as **interfaces** dos repositórios |
-| **Infrastructure** | Acesso ao banco: `DbContext`, implementação dos repositórios e migrations |
-| **Communication** | As classes do JSON que entra (`Requests`) e que sai (`Responses`) da API |
-| **Exception** | Exceções do sistema e mensagens de erro |
+| Projeto            | Para que serve                                                                                                   |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------- |
+| **Api**            | Porta de entrada HTTP: controllers, filtros, Swagger e o`Program.cs` que registra tudo na injeção de dependência |
+| **Application**    | Os casos de uso (regras da aplicação) e o mapeamento entre entidades e JSON                                      |
+| **Domain**         | O núcleo: entidades, enums e as**interfaces** dos repositórios                                                   |
+| **Infrastructure** | Acesso ao banco:`DbContext`, implementação dos repositórios e migrations                                         |
+| **Communication**  | As classes do JSON que entra (`Requests`) e que sai (`Responses`) da API                                         |
+| **Exception**      | Exceções do sistema e mensagens de erro                                                                          |
 
 - Pastas vazias têm um `.gitkeep` para o git não ignorar. Pode apagar quando colocar o primeiro arquivo nela
 
@@ -73,14 +73,14 @@ src/
 
 ## Relação entre os projetos
 
-| Projeto | Referencia |
-|---|---|
-| Api | Application, Infrastructure, Communication, Exception |
-| Application | Domain, Communication, Exception |
-| Infrastructure | Domain |
-| Domain | ninguém |
-| Communication | ninguém |
-| Exception | ninguém |
+| Projeto        | Referencia                                            |
+| -------------- | ----------------------------------------------------- |
+| Api            | Application, Infrastructure, Communication, Exception |
+| Application    | Domain, Communication, Exception                      |
+| Infrastructure | Domain                                                |
+| Domain         | ninguém                                               |
+| Communication  | ninguém                                               |
+| Exception      | ninguém                                               |
 
 - A `Api` é a única que conhece todo mundo, porque é ela que liga as camadas na injeção de dependência
 - A `Application` não conhece a `Infrastructure`: ela usa as interfaces do `Domain`, e quem entrega a implementação é a injeção de dependência
@@ -99,3 +99,8 @@ Como o `DbContext` fica na Infrastructure e o `Program.cs` na Api, o comando de 
 ```bash
 dotnet ef migrations add Inicial --project src/Backend/EmprestimoLivroApi.Infrastructure --startup-project src/Backend/EmprestimoLivroApi.Api
 ```
+
+
+
+
+- Criei a classe Livros e vou criar a Classe de Autor com uma lista de livros
