@@ -13,6 +13,6 @@ namespace EmprestimoLivroApi.Domain.Entities
 
         public int AuthorId { get; set; }
         public Author Author { get; set; } = null!;
-        public List<Loan> Loans { get; set; }
+        public List<Loan> Loans { get; set; } = [];
     }
 }
