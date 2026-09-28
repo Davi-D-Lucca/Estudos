@@ -1,21 +1,26 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PrimeiraApi.Application.ViewModel;
-using PrimeiraApi.Domain.Model;
+using PrimeiraApi.Domain.DTOs;
+using PrimeiraApi.Domain.Model.EmployeeAggregate;
 
-namespace PrimeiraApi.Controllers
+namespace PrimeiraApi.Controllers.v2
 {
     [ApiController]
-    [Route("/api/v1/employee")]
+    [Route("/api/v{version:apiVersion}/employee")]
+    [ApiVersion("2.0")]
     public class EmployeeController : ControllerBase
     {
         private readonly IEmployeeRepository _employeeRepository;
         private readonly ILogger<EmployeeController> _logger;
+        private readonly IMapper _mapper;
 
-        public EmployeeController(IEmployeeRepository employeeRepository, ILogger<EmployeeController> logger)
+        public EmployeeController(IEmployeeRepository employeeRepository, ILogger<EmployeeController> logger, IMapper mapper)
         {
-            _employeeRepository = employeeRepository ?? throw new ArgumentNullException();
-            _logger = logger ?? throw new ArgumentNullException();
+            _employeeRepository = employeeRepository ?? throw new ArgumentNullException(nameof(employeeRepository));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
         [Authorize]
@@ -61,6 +66,15 @@ namespace PrimeiraApi.Controllers
             var employee = _employeeRepository.Get(id);
             var dataBytes = System.IO.File.ReadAllBytes(employee.photo);
             return File(dataBytes, "image/png");
+        }
+
+        [HttpGet]
+        [Route("{id}")]
+        public IActionResult Search(int id)
+        {
+            var employees = _employeeRepository.Get(id);
+            var employeesDTO = _mapper.Map<EmployeeDTO>(employees);
+            return Ok(employeesDTO);
         }
     }
 }

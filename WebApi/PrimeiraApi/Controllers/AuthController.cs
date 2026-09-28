@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PrimeiraApi.Application.Services;
 using PrimeiraApi.Domain.Model;
+using PrimeiraApi.Domain.Model.EmployeeAggregate;
 
 namespace WebApi.Controllers
 {
