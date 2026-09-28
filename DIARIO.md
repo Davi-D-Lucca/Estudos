@@ -222,6 +222,9 @@ Configurar as classes/tabela via Dbcontext e ai depois cada mudança fazer Add-M
 > [!TIP]
 > Essa parte não fui eu que escrevi, são complementos que o Claude sugeriu olhando meu código. Deixei separado das minhas anotações.
 
+> [!NOTE]
+> O frontend (`WebApi/primeira-api-vue-js`, em Vue + Quasar) foi o Claude que fez, e ele também fez 1 inject de 10 funcionários pra teste (as fotos deles tão na pasta `Storage`)
+
 ### Migrations - comandos certinhos
 
 No Console do Gerenciador de Pacotes do Visual Studio é no singular:
