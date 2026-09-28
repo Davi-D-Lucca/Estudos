@@ -12,7 +12,7 @@ namespace WebApi.Controllers
         [HttpPost]
         public IActionResult Auth(string username, string password)
         {
-            if (username == "filipe" && password == "123456")
+            if (username == "admin" && password == "admin")
             {
                 var token = TokenService.GenerateToken(new Employee());
                 return Ok(token);
