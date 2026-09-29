@@ -10,6 +10,7 @@
 4. [Camadas e pastas](#camadas-e-pastas)
 5. [Relação entre os projetos](#relação-entre-os-projetos)
 6. [Entity Framework com PostgreSQL](#entity-framework-com-postgresql)
+7. [A estudar](#a-estudar)
 
 ---
 
@@ -58,14 +59,14 @@ src/
     └── EmprestimoLivroApi.Exception        → ExceptionsBase/
 ```
 
-| Projeto            | Para que serve                                                                                                   |
-| ------------------ | ---------------------------------------------------------------------------------------------------------------- |
+| Projeto                  | Para que serve                                                                                                        |
+| ------------------------ | --------------------------------------------------------------------------------------------------------------------- |
 | **Api**            | Porta de entrada HTTP: controllers, filtros, Swagger e o`Program.cs` que registra tudo na injeção de dependência |
-| **Application**    | Os casos de uso (regras da aplicação) e o mapeamento entre entidades e JSON                                      |
-| **Domain**         | O núcleo: entidades, enums e as**interfaces** dos repositórios                                                   |
+| **Application**    | Os casos de uso (regras da aplicação) e o mapeamento entre entidades e JSON                                         |
+| **Domain**         | O núcleo: entidades, enums e as**interfaces** dos repositórios                                                |
 | **Infrastructure** | Acesso ao banco:`DbContext`, implementação dos repositórios e migrations                                         |
-| **Communication**  | As classes do JSON que entra (`Requests`) e que sai (`Responses`) da API                                         |
-| **Exception**      | Exceções do sistema e mensagens de erro                                                                          |
+| **Communication**  | As classes do JSON que entra (`Requests`) e que sai (`Responses`) da API                                          |
+| **Exception**      | Exceções do sistema e mensagens de erro                                                                             |
 
 - Pastas vazias têm um `.gitkeep` para o git não ignorar. Pode apagar quando colocar o primeiro arquivo nela
 
@@ -78,9 +79,9 @@ src/
 | Api            | Application, Infrastructure, Communication, Exception |
 | Application    | Domain, Communication, Exception                      |
 | Infrastructure | Domain                                                |
-| Domain         | ninguém                                               |
-| Communication  | ninguém                                               |
-| Exception      | ninguém                                               |
+| Domain         | ninguém                                              |
+| Communication  | ninguém                                              |
+| Exception      | ninguém                                              |
 
 - A `Api` é a única que conhece todo mundo, porque é ela que liga as camadas na injeção de dependência
 - A `Application` não conhece a `Infrastructure`: ela usa as interfaces do `Domain`, e quem entrega a implementação é a injeção de dependência
@@ -100,7 +101,13 @@ Como o `DbContext` fica na Infrastructure e o `Program.cs` na Api, o comando de 
 dotnet ef migrations add Inicial --project src/Backend/EmprestimoLivroApi.Infrastructure --startup-project src/Backend/EmprestimoLivroApi.Api
 ```
 
-
-
-
+- Eu
 - Criei a classe Livros e vou criar a Classe de Autor com uma lista de livros
+- Criado as 2 entitites também de Reader e Loan
+- Conectando todos para na hora que gferar a migration com FK já
+
+---
+
+## A estudar
+
+- [ ] Estudar injeção de dependencia
