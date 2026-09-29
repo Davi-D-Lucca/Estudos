@@ -78,4 +78,4 @@ WebApi/
 
 ## Diário de estudos
 
-Minhas anotações de cada etapa, do primeiro Model até JWT, AutoMapper e Migrations, estão no [DIARIO.md](../DIARIO.md).
+Minhas anotações de cada etapa, do primeiro Model até JWT, AutoMapper e Migrations, estão no [DIARIO.md](DIARIO.md).

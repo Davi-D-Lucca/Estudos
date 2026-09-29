@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\EmprestimoLivroApi.Domain\EmprestimoLivroApi.Domain.csproj" />
+    <ProjectReference Include="..\..\Shared\EmprestimoLivroApi.Communication\EmprestimoLivroApi.Communication.csproj" />
+    <ProjectReference Include="..\..\Shared\EmprestimoLivroApi.Exception\EmprestimoLivroApi.Exception.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="UseCases\" />
+    <Folder Include="Mappings\" />
+  </ItemGroup>
+
+</Project>

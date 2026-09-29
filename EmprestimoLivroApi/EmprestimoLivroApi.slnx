@@ -1,0 +1,13 @@
+<Solution>
+  <Folder Name="/src/" />
+  <Folder Name="/src/Backend/">
+    <Project Path="src/Backend/EmprestimoLivroApi.Api/EmprestimoLivroApi.Api.csproj" />
+    <Project Path="src/Backend/EmprestimoLivroApi.Application/EmprestimoLivroApi.Application.csproj" />
+    <Project Path="src/Backend/EmprestimoLivroApi.Domain/EmprestimoLivroApi.Domain.csproj" />
+    <Project Path="src/Backend/EmprestimoLivroApi.Infrastructure/EmprestimoLivroApi.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/Shared/">
+    <Project Path="src/Shared/EmprestimoLivroApi.Communication/EmprestimoLivroApi.Communication.csproj" />
+    <Project Path="src/Shared/EmprestimoLivroApi.Exception/EmprestimoLivroApi.Exception.csproj" />
+  </Folder>
+</Solution>

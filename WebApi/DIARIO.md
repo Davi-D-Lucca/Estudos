@@ -189,7 +189,7 @@ builder.Services.AddSwaggerGen(c =>
 
 ## Arquitetura Web API
 
-![Arquitetura Web API](image/DIARIO/1790282820154.png)
+![Arquitetura Web API](../image/DIARIO/1790282820154.png)
 
 ---
 

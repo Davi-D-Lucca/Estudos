@@ -10,4 +10,4 @@ Repositório onde registro meus estudos de desenvolvimento, principalmente back-
 
 ## Diário de estudos
 
-Minhas anotações de cada etapa estão no [DIARIO.md](DIARIO.md).
+Minhas anotações de cada etapa estão no [DIARIO.md](WebApi/DIARIO.md).
