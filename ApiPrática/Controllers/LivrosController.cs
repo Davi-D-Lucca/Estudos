@@ -62,5 +62,49 @@ namespace ApiPrática.Controllers
 
         }
 
+        [HttpPut("{id}")]
+        public async Task<IActionResult> AtualizarPorId(int id, Livros livro)
+        {
+            var livroExistente = await _context.Livros.FindAsync(id);
+
+            if(livroExistente == null)
+                return NotFound(new { mensagem = "Contato não encontrado." });
+
+            livroExistente.NameBook = livro.NameBook;
+            livroExistente.Pages = livro.Pages;
+            livroExistente.NameArtist = livro.NameArtist;
+            livroExistente.Category = livro.Category;
+
+            _context.Livros.Update(livroExistente);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> AtualizarParcialmente(int id, Livros livro)
+        {
+            var livroExistente = await _context.Livros.FindAsync(id);
+
+            if(livroExistente == null)
+                return NotFound(new { mensagem = "Contato não encontrado." });
+
+            if (!String.IsNullOrEmpty(livro.NameBook)) 
+                livroExistente.NameBook = livro.NameBook;
+
+            if (livro.Pages > 0)
+                livroExistente.Pages = livro.Pages;
+
+            if (!String.IsNullOrEmpty(livro.NameArtist))
+                livroExistente.NameArtist = livro.NameArtist;
+
+            if(livro.Category != null)
+                livroExistente.Category = livro.Category;
+
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
     }
 }
