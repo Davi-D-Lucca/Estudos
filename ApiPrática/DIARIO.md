@@ -31,3 +31,13 @@ Tem que fazer essa injeção no program.cs
 - O que entendi (com minhas palavras): O patch faz com que somente 1 propriedade seja alterada, sem precisar alterar todas
 - O que ainda não ficou claro: As vezes dá alguns erros de nullable la na classe, porém não implementei o DTO ainda, estão vou buscar estudar isso
 - Onde apliquei no código (arquivo/commit): Apliquei o patch no controller
+
+### 2026-10-09 — DTO
+
+- O que estudei: Para que serve DTO, como utilizar 1 DTO
+- O que entendi (com minhas palavras): Uma classe que prove extamente aquilo que é necessário para um determinado processo
+
+DTO -> Model -> bando de dados
+
+- O que ainda não ficou claro:
+- Onde apliquei no código (arquivo/commit):
