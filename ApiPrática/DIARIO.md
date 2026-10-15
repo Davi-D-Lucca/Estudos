@@ -1,4 +1,4 @@
-### 2026-10-08 — Injeção de dependência
+2026-10-08 — Injeção de dependência
 
 - O que estudei: Injeção de dependência: Scoped vs Transient vs Singleton (e por que o DbContext é Scoped)
 - O que entendi (com minhas palavras): Utilizar menos New e utilizar a injeção de dependencia.
@@ -38,6 +38,30 @@ Tem que fazer essa injeção no program.cs
 - O que entendi (com minhas palavras): Uma classe que prove extamente aquilo que é necessário para um determinado processo
 
 DTO -> Model -> bando de dados
+
+- O que ainda não ficou claro:
+- Onde apliquei no código (arquivo/commit):
+
+### 2026-10-14 — Pipeline de middlewares
+
+- O que estudei: Pipeline de middlewares / Diferença entre UseAuthentication e UseAuthorization / O que o `[ApiController]` faz sozinho (validação automática, `[FromBody]` inferido, `ProblemDetails`) / `IActionResult` vs `ActionResult<T>` e `[ProducesResponseType]`
+- O que entendi (com minhas palavras): Middleware, exempo: 1 segurança numa balada
+
+é 1 camada que fica no program.cs que cria algumas regras e que a ordem é importante.Pique, depois que o usuario autenticar, criar 1 middleware para ele enviar 1 arquivo e fazer com que fique preso nessa página ate o envio do arquivo, isso se for 1 regra global para a API. Uma etaopa que ocorre assim que é solicitado a requisiçao
+
+UseAuthorization -> Verifica se o usuario identificado possui a funçao admin
+
+UseAuthentication -> Verifica as credenciais do usuario, token jwt
+
+ApiController faz a identificacao automatica dos ModelState, para poupar codigos, sem ele, teria que verificar manualmente esses estados. A interferencia do FromBody precisa estarquando se utiliza o api controller
+
+`IActionResult` -> Mando 1 caixa mas não falo o que tem dentro, não falo o objeto que ta enviando na resposta
+
+`ActionResult<T>` -> mando a caixa e escrevo q o objeto é livro 
+
+ `[ProducesResponseType]`
+
+Quando a chamada da API falha ela volta 1 ProblemDetails, que da para personalizar
 
 - O que ainda não ficou claro:
 - Onde apliquei no código (arquivo/commit):

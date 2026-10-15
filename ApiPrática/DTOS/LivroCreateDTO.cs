@@ -10,6 +10,7 @@ namespace ApiPrática.DTOS
         public string? NameArtist { get; set; }
         [Range(1, 1000, ErrorMessage = "Não pode ser menor que 0!")]
         public int Pages { get; set; }
+        [MinLength(1, ErrorMessage = "Pelo menos 1 categoria!")]
         public List<string>? Category { get; set; }
     }
 }

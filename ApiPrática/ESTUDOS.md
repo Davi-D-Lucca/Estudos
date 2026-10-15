@@ -9,11 +9,11 @@
 ### Fundamentos da API
 
 - [X] Injeção de dependência: Scoped vs Transient vs Singleton (e por que o DbContext é Scoped)
-- [ ] Pipeline de middlewares e a importância da ordem (`UseHttpsRedirection`, `UseAuthorization`, `MapControllers`)
-- [ ] Diferença entre `UseAuthentication` e `UseAuthorization`
-- [ ] O que o `[ApiController]` faz sozinho (validação automática, `[FromBody]` inferido, `ProblemDetails`)
-- [ ] Rotas: `[Route("api/[controller]")]`, `[HttpGet("{id}")]`, route constraints (`{id:int}`)
-- [ ] `IActionResult` vs `ActionResult<T>` e `[ProducesResponseType]`
+- [X] Pipeline de middlewares e a importância da ordem (`UseHttpsRedirection`, `UseAuthorization`, `MapControllers`)
+- [X] Diferença entre `UseAuthentication` e `UseAuthorization`
+- [X] O que o `[ApiController]` faz sozinho (validação automática, `[FromBody]` inferido, `ProblemDetails`)
+- [X] Rotas: `[Route("api/[controller]")]`, `[HttpGet("{id}")]`, route constraints (`{id:int}`)
+- [X] `IActionResult` vs `ActionResult<T>` e `[ProducesResponseType]`
 - [ ] Códigos HTTP: 200, 201 (+ header Location), 204, 400, 404, 409
 - [ ] async/await: o que acontece por baixo no `await` do EF
 
@@ -46,12 +46,14 @@
 - [ ] Docker Compose (API + PostgreSQL)
 
 ### Desafios extras — Web API
+
 - [ ] Padrões REST: Modelo de Maturidade de Richardson (níveis 0 a 3) e o que é HATEOAS
 - [ ] Autenticação por token: JWT (login, claims, expiração, assinatura) e `[Authorize]`
 - [ ] Diferença entre autenticação e autorização (e `UseAuthentication` antes de `UseAuthorization`)
 - [ ] Middlewares customizados para interceptar requests: `Use` vs `Run` vs `Map`, e a ordem no pipeline
 
 ### Desafios extras — .NET 6+
+
 - [ ] Tempos de vida: Singleton vs Scoped vs Transient, e quando usar cada um para criar serviços eficientes
 - [ ] Armadilha da dependência capturada (Singleton dependendo de Scoped) e `IServiceScopeFactory`
 - [ ] Reflection para descobrir e registrar serviços automaticamente (varredura de assembly)
@@ -75,16 +77,16 @@ Cada item tem um objetivo claro. Faça na ordem; um commit por item.
 
 ### P2 — DTOs
 
-- [ ] Criar `LivroCreateDto`, `LivroUpdateDto` e `LivroResponseDto`
-- [ ] Parar de receber/devolver a entidade `Livros` direto no controller
-- [ ] Conferir que o cliente não consegue mais enviar o `Id` no POST
+- [X] Criar `LivroCreateDto`, `LivroUpdateDto` e `LivroResponseDto`
+- [X] Parar de receber/devolver a entidade `Livros` direto no controller
+- [X] Conferir que o cliente não consegue mais enviar o `Id` no POST
 
 ### P3 — Validação
 
-- [ ] `NameBook` obrigatório e com tamanho máximo
-- [ ] `Pages` maior que 0
-- [ ] `Category` com pelo menos 1 item
-- [ ] Testar no Swagger/.http e ver o `400` com `ProblemDetails`
+- [X] `NameBook` obrigatório e com tamanho máximo
+- [X] `Pages` maior que 0
+- [X] `Category` com pelo menos 1 item
+- [X] Testar no Swagger/.http e ver o `400` com `ProblemDetails`
 
 ### P4 — GET com filtro e paginação
 
@@ -117,12 +119,14 @@ Cada item tem um objetivo claro. Faça na ordem; um commit por item.
 - [ ] `Dockerfile` da API e subir tudo com `docker compose up`
 
 ### P9 — REST nível 3 (HATEOAS)
+
 - [ ] Revisar o que a API já cumpre do nível 2 (verbos e códigos HTTP corretos)
 - [ ] Fazer `GET api/livros/{id}` devolver o livro com uma lista `links` (`self`, `update`, `delete`, `todos`)
 - [ ] Gerar as URLs com `Url.Action`/`LinkGenerator`, sem escrever texto fixo
 - [ ] Fazer o `GET api/livros` devolver os links de cada item
 
 ### P10 — Autenticação com token (JWT)
+
 - [ ] Criar `POST api/auth/login` que valida um usuário simples e devolve um token JWT
 - [ ] Guardar a chave de assinatura no User Secrets (nunca no código)
 - [ ] Proteger POST, PUT, PATCH e DELETE com `[Authorize]`, deixando os GET públicos
@@ -130,30 +134,35 @@ Cada item tem um objetivo claro. Faça na ordem; um commit por item.
 - [ ] Bônus: papéis (roles) — só "admin" pode excluir
 
 ### P11 — Middlewares
+
 - [ ] Criar `RequestLoggingMiddleware`: loga método, rota, status e tempo da requisição
 - [ ] Criar um middleware que adiciona o header `X-Correlation-Id` em toda resposta
 - [ ] Criar um middleware de tratamento de erros (devolve `ProblemDetails` em vez de estourar exceção)
 - [ ] Registrar na ordem certa no `Program.cs` e testar o que muda se trocar a ordem
 
 ### P12 — Singleton, Scoped e Transient
+
 - [ ] Criar 3 serviços simples, cada um com um `Guid` gerado no construtor, registrados como Singleton, Scoped e Transient
 - [ ] Injetar os 3 no controller e também em um segundo serviço, e devolver os Guids numa rota de teste
 - [ ] Chamar a rota duas vezes e anotar quais Guids mudam e quais não
 - [ ] Provocar de propósito uma dependência capturada (Singleton usando Scoped) e ver o erro
 
 ### P13 — Reflection, interfaces e classes abstratas
+
 - [ ] Criar `INotificador` (interface) e `NotificadorBase` (classe abstrata com o código comum)
 - [ ] Criar 2 implementações (ex.: `NotificadorEmail` e `NotificadorLog`)
 - [ ] Registrar todas as implementações de `INotificador` por reflection, varrendo o assembly, sem registrar uma a uma
 - [ ] Injetar `IEnumerable<INotificador>` e chamar todas ao criar um livro
 
 ### P14 — Serviço de terceiros
+
 - [ ] Enviar um e-mail ao cadastrar um livro (MailKit/SMTP de teste, como Mailtrap, ou SendGrid)
 - [ ] Alternativa: disparar um webhook do Zapier a cada livro criado
 - [ ] Usar `IHttpClientFactory` para chamadas HTTP externas e User Secrets para chaves/senhas
 - [ ] Bônus: validar um captcha (reCAPTCHA ou Turnstile) no endpoint de login antes de gerar o token
 
 ### P15 — Front-end separado, CORS e HTTPS
+
 - [ ] Criar um front simples (HTML + JS ou React/Vite) em outra porta que consome `GET api/livros`
 - [ ] Ver o erro de CORS no console do navegador e entender a mensagem
 - [ ] Configurar `AddCors` com uma policy que libera só a origem do front e usar `UseCors`
