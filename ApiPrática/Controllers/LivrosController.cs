@@ -1,4 +1,5 @@
 ﻿using ApiPrática.Data;
+using ApiPrática.DTOS;
 using ApiPrática.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -23,7 +24,17 @@ namespace ApiPrática.Controllers
         public async Task<IActionResult> Get()
         {
             var livros = await _context.Livros.ToListAsync();
-            return Ok(livros);
+
+            var response = livros.Select(livro => new LivroResponseDTO
+            {
+                Id = livro.Id,
+                NameBook = livro.NameBook,
+                Pages = livro.Pages,
+                NameArtist = livro.NameArtist,
+                Category = livro.Category
+            }).ToList();
+
+            return Ok(response);
         }
 
         [HttpGet("{id}")]
@@ -39,12 +50,24 @@ namespace ApiPrática.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Criar(Livros livros)
+        public async Task<IActionResult> Criar(LivroCreateDTO livroDto)
         {
+            var livros = new Livros
+            {
+                NameBook = livroDto.NameBook,
+                Pages = livroDto.Pages,
+                NameArtist = livroDto.NameArtist,
+                Category = livroDto.Category
+            };
+
             _context.Livros.Add(livros);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetId), new {id = livros.Id}, livros);
+            return CreatedAtAction(
+                nameof(GetId),
+                new { id = livros.Id },
+                livros
+            );
         }
 
         [HttpDelete("{id}")]
@@ -63,19 +86,18 @@ namespace ApiPrática.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> AtualizarPorId(int id, Livros livro)
+        public async Task<IActionResult> AtualizarPorId(int id, LivroUpdateDTO livroDto)
         {
             var livroExistente = await _context.Livros.FindAsync(id);
 
             if(livroExistente == null)
                 return NotFound(new { mensagem = "Contato não encontrado." });
 
-            livroExistente.NameBook = livro.NameBook;
-            livroExistente.Pages = livro.Pages;
-            livroExistente.NameArtist = livro.NameArtist;
-            livroExistente.Category = livro.Category;
+            livroExistente.NameBook = livroDto.NameBook;
+            livroExistente.Pages = livroDto.Pages;
+            livroExistente.NameArtist = livroDto.NameArtist;
+            livroExistente.Category = livroDto.Category;
 
-            _context.Livros.Update(livroExistente);
             await _context.SaveChangesAsync();
 
             return NoContent();
