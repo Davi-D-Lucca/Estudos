@@ -14,8 +14,8 @@
 - [X] O que o `[ApiController]` faz sozinho (validação automática, `[FromBody]` inferido, `ProblemDetails`)
 - [X] Rotas: `[Route("api/[controller]")]`, `[HttpGet("{id}")]`, route constraints (`{id:int}`)
 - [X] `IActionResult` vs `ActionResult<T>` e `[ProducesResponseType]`
-- [ ] Códigos HTTP: 200, 201 (+ header Location), 204, 400, 404, 409
-- [ ] async/await: o que acontece por baixo no `await` do EF
+- [X] Códigos HTTP: 200, 201 (+ header Location), 204, 400, 404, 409
+- [X] async/await: o que acontece por baixo no `await` do EF
 
 ### EF Core + PostgreSQL
 
@@ -90,10 +90,10 @@ Cada item tem um objetivo claro. Faça na ordem; um commit por item.
 
 ### P4 — GET com filtro e paginação
 
-- [ ] `GET api/livros?categoria=ficcao&page=1&pageSize=10`
-- [ ] Filtro por nome (contém) e ordenação
-- [ ] Usar `AsNoTracking` e montar a query em `IQueryable` antes do `ToListAsync`
-- [ ] Devolver também o total de itens
+- [X] `GET api/livros?categoria=ficcao&page=1&pageSize=10`
+- [X] Filtro por nome (contém) e ordenação
+- [X] Usar `AsNoTracking` e montar a query em `IQueryable` antes do `ToListAsync`
+- [X] Devolver também o total de itens
 
 ### P5 — Autor como entidade
 

@@ -57,11 +57,30 @@ ApiController faz a identificacao automatica dos ModelState, para poupar codigos
 
 `IActionResult` -> Mando 1 caixa mas não falo o que tem dentro, não falo o objeto que ta enviando na resposta
 
-`ActionResult<T>` -> mando a caixa e escrevo q o objeto é livro 
+`ActionResult<T>` -> mando a caixa e escrevo q o objeto é livro
 
  `[ProducesResponseType]`
 
 Quando a chamada da API falha ela volta 1 ProblemDetails, que da para personalizar
 
+- O que ainda não ficou claro: Em que momento utilizar os middleware, acho que não estou com o pensamento critico ainda da utilização.
+- Onde apliquei no código (arquivo/commit): Aplicado no Program.cs, acredito que Swagger seja 1 forma de middleware
+
+### 2026-10-16— Codes HTTP, async/await / Paginação
+
+- O que estudei: Codes HTTP / Asyn/Await
+- O que entendi (com minhas palavras): Cada estado é importante para manutenção rapida do software
+
+2xx -> sucesso / 3xx-> desvio / 4xx -> erro de quem pediu / 5xx-> erro de quem respondeu
+
+Assincrona faz com que posso fazer várias Threads   ---  Async -> Task -> Await
+
+- O que ainda não ficou claro: Estou com dificuldade na paginação e no get com filtro.
+- Onde apliquei no código (arquivo/commit):
+
+### 2026-10-19— assunto
+
+- O que estudei: Paginação com filtro
+- O que entendi (com minhas palavras): da para utilizar o SKIP e o TAKE pelo proprio LINQ para ter os resultados limitados.  Transformar em `AsQueryable`() para que possa aceitar os filtros e ai fazer o var await com todos os filtros . Return com page, pageSize e os dados.
 - O que ainda não ficou claro:
 - Onde apliquei no código (arquivo/commit):

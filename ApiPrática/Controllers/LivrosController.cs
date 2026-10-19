@@ -128,5 +128,44 @@ namespace ApiPrática.Controllers
             return NoContent();
         }
 
+        [HttpGet("paginado")]
+        public async Task<ActionResult> GetPaginado(
+            [FromQuery] int page = 1,
+            [FromQuery] int pageSize = 25,
+            [FromQuery] string? name = "")
+        {
+
+            var query = _context.Livros.AsQueryable().AsNoTracking();
+
+            if (!string.IsNullOrWhiteSpace(name))
+            {
+                query = query.Where(x => EF.Functions.ILike(x.NameBook, $"%{name}%"));
+            }
+
+            var total = await query.CountAsync();
+
+            var livros = await query
+                    .OrderBy(l => l.Id)
+                    .Skip((page - 1) * pageSize)
+                    .Take(pageSize)
+                    .Select(livro => new LivroResponseDTO
+                    {
+                        Id = livro.Id,
+                        NameBook = livro.NameBook,
+                        Pages = livro.Pages,
+                        NameArtist = livro.NameArtist,
+                        Category = livro.Category
+                    })
+                    .ToListAsync();
+
+            return Ok(new
+            {
+                total,
+                page,
+                pageSize,
+                dados = livros
+            });
+        }
+
     }
 }
