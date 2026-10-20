@@ -82,5 +82,18 @@ Assincrona faz com que posso fazer várias Threads   ---  Async -> Task -> Await
 
 - O que estudei: Paginação com filtro
 - O que entendi (com minhas palavras): da para utilizar o SKIP e o TAKE pelo proprio LINQ para ter os resultados limitados.  Transformar em `AsQueryable`() para que possa aceitar os filtros e ai fazer o var await com todos os filtros . Return com page, pageSize e os dados.
+
+Fluxo para seguir: IQueryable [Monta a consulta, filtros e ordenação]-> Skip + Take [Define quais registros serão retornados] -> ToListAsync() [Executa a consulta e materializa os resultados em uma lista]
+
+- O que ainda não ficou claro: Por enquanto está claro, porém alguns termos ainda de LINQ estão meio confusos, mas com o tempo de pratica da para melhorar
+- Onde apliquei no código (arquivo/commit):  feature/paginacao-livros
+
+### 2026-10-20— assunto
+
+- O que estudei:
+- O que entendi (com minhas palavras): Entidade -> DTO -> ValueObject
+
+Pensa em ValueObject quando for sinonimos, quando for repetir varias vezes essas validações. Centralizar em 1 unico lugar, fica mais facil manutenção e os testes pesados raramente vão falhar. ValueObject > | Entidade > | DTO >
+
 - O que ainda não ficou claro:
 - Onde apliquei no código (arquivo/commit):

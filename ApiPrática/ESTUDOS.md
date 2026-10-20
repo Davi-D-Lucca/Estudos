@@ -168,6 +168,8 @@ Cada item tem um objetivo claro. Faça na ordem; um commit por item.
 - [ ] Configurar `AddCors` com uma policy que libera só a origem do front e usar `UseCors`
 - [ ] Rodar a API em HTTPS com o certificado de desenvolvimento confiável (`dotnet dev-certs https --trust`)
 - [ ] Fazer o front chamar a API em HTTPS e enviar o token JWT no header
+- [ ] Record class
+- [ ] Paralelismo
 
 ---
 

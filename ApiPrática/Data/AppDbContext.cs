@@ -11,5 +11,6 @@ namespace ApiPrática.Data
         }
 
         public DbSet<Livros> Livros { get; set; }
+        public DbSet<Autor> Autor { get; set; }
     }
 }
