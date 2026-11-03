@@ -22,6 +22,22 @@ namespace ApiPrática.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("ApiPrática.Models.Autor", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("NameAutor")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Autor");
+                });
+
             modelBuilder.Entity("ApiPrática.Models.Livros", b =>
                 {
                     b.Property<int>("Id")
@@ -30,13 +46,11 @@ namespace ApiPrática.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.PrimitiveCollection<List<string>>("Category")
-                        .IsRequired()
-                        .HasColumnType("text[]");
+                    b.Property<int>("AutorId")
+                        .HasColumnType("integer");
 
-                    b.Property<string>("NameArtist")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.PrimitiveCollection<List<string>>("Category")
+                        .HasColumnType("text[]");
 
                     b.Property<string>("NameBook")
                         .IsRequired()
@@ -47,7 +61,25 @@ namespace ApiPrática.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AutorId");
+
                     b.ToTable("Livros");
+                });
+
+            modelBuilder.Entity("ApiPrática.Models.Livros", b =>
+                {
+                    b.HasOne("ApiPrática.Models.Autor", "Autor")
+                        .WithMany("Livros")
+                        .HasForeignKey("AutorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Autor");
+                });
+
+            modelBuilder.Entity("ApiPrática.Models.Autor", b =>
+                {
+                    b.Navigation("Livros");
                 });
 #pragma warning restore 612, 618
         }
