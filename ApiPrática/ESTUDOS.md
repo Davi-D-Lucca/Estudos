@@ -19,8 +19,8 @@
 
 ### EF Core + PostgreSQL
 
-- [ ] DbContext, DbSet e change tracker
-- [ ] `Find` vs `FirstOrDefault` vs `SingleOrDefault`
+- [X] DbContext, DbSet e change tracker
+- [X] `Find` vs `FirstOrDefault` vs `SingleOrDefault`
 - [ ] `AsNoTracking` nas leituras
 - [ ] Migrations: `add-migration`, `update-database`, `remove-migration`, o que é o `ModelSnapshot`
 - [ ] `List<string>` mapeado como `text[]` (Npgsql) vs tabela de Categoria com N:N
@@ -97,14 +97,14 @@ Cada item tem um objetivo claro. Faça na ordem; um commit por item.
 
 ### P5 — Autor como entidade
 
-- [ ] Trocar `NameArtist` por uma entidade `Autor` (relação 1:N com `Livro`)
-- [ ] Criar nova migration e aplicar
-- [ ] Ajustar DTOs e endpoints (ex.: `GET api/autores/{id}/livros`)
+- [X] Trocar `NameArtist` por uma entidade `Autor` (relação 1:N com `Livro`)
+- [X] Criar nova migration e aplicar
+- [X] Ajustar DTOs e endpoints (ex.: `GET api/autores/{id}/livros`)
 
 ### P6 — Configuração segura
 
-- [ ] Mover a connection string para User Secrets
-- [ ] Remover a connection string comentada antiga do `appsettings.json`
+- [X] Mover a connection string para User Secrets
+- [X] Remover a connection string comentada antiga do `appsettings.json`
 - [ ] Reescrever o `ApiPrática.http` com requests reais dos seus endpoints (apagar o `weatherforecast`)
 
 ### P7 — Erros e testes

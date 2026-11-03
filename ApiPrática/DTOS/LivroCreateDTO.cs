@@ -7,7 +7,10 @@ namespace ApiPrática.DTOS
         [Required(ErrorMessage = "Digite o Nome do Livro!")]
         [StringLength(100, MinimumLength = 3, ErrorMessage = "O nome do livro tem que ter no minimo 3 caracteres!")]
         public string? NameBook { get; set; }
-        public int AutorId { get; set; }
+        // public int AutorId { get; set; }
+        // Os dois opcionais: manda o AutorId de um autor existente OU o NameAutor (busca ou cria)
+        public int? AutorId { get; set; }
+        public string? NameAutor { get; set; }
         [Range(1, 1000, ErrorMessage = "Não pode ser menor que 0!")]
         public int Pages { get; set; }
         [MinLength(1, ErrorMessage = "Pelo menos 1 categoria!")]

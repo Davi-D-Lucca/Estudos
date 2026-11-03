@@ -1,6 +1,8 @@
-@ApiPrática_HostAddress = http://localhost:5036
+@ApiPrática_HostAddress = https://localhost:7002
 
-GET {{ApiPrática_HostAddress}}/weatherforecast/
+# Livros paginados, filtrando pelo nome do livro
+GET {{ApiPrática_HostAddress}}/api/Livros/paginado?page=1&pageSize=5&name=dragão
 Accept: application/json
 
 ###
+

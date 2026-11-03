@@ -88,12 +88,28 @@ Fluxo para seguir: IQueryable [Monta a consulta, filtros e ordenação]-> Skip +
 - O que ainda não ficou claro: Por enquanto está claro, porém alguns termos ainda de LINQ estão meio confusos, mas com o tempo de pratica da para melhorar
 - Onde apliquei no código (arquivo/commit):  feature/paginacao-livros
 
-### 2026-10-20— assunto
+### 2026-10-20— DbContext, DbSet e change tracker / Relacao 1:N / Manipulacao de Dados com o EF
 
-- O que estudei:
+- O que estudei: Relacao 1:N
 - O que entendi (com minhas palavras): Entidade -> DTO -> ValueObject
 
 Pensa em ValueObject quando for sinonimos, quando for repetir varias vezes essas validações. Centralizar em 1 unico lugar, fica mais facil manutenção e os testes pesados raramente vão falhar. ValueObject > | Entidade > | DTO >
 
+Coloquei em pratica a relacao 1:N e manipulação de banco ja que antes era NameArtist e agora virou Autor.NameAutor, implementado tambem algumas validacoes para criacao do autor
+
 - O que ainda não ficou claro:
-- Onde apliquei no código (arquivo/commit):
+- Onde apliquei no código (arquivo/commit): Feature/Autor-livros
+
+### 2026-10-27 — LINQ
+
+O que estudei: LINQ
+
+O que entendi (com minhas palavras): LINQ uma ferramente poderosa do C#
+
+Estou estudando sobre alguns deles: First, FirstOrDefault, Last, LastOrDefault, Single, SingleOrDefault
+
+Single -> Se eu colocar minha expressao e for duplicado, o single vai retornar exception
+
+O que ainda não ficou claro:
+
+Onde apliquei no código (arquivo/commit):

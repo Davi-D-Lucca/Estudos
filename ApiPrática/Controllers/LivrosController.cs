@@ -56,28 +56,76 @@ namespace ApiPrática.Controllers
         [HttpPost]
         public async Task<IActionResult> Criar(LivroCreateDTO livroDto)
         {
-            // Sem essa checagem, um AutorId inexistente estoura erro de FK no SaveChanges (500)
-            var autorExiste = await _context.Autor.AnyAsync(a => a.Id == livroDto.AutorId);
+            // // Sem essa checagem, um AutorId inexistente estoura erro de FK no SaveChanges (500)
+            // var autorExiste = await _context.Autor.AnyAsync(a => a.Id == livroDto.AutorId);
+            //
+            // if (!autorExiste)
+            //     return BadRequest(new { mensagem = "Autor não encontrado." });
+            //
+            // var livros = new Livros
+            // {
+            //     NameBook = livroDto.NameBook,
+            //     Pages = livroDto.Pages,
+            //     // Autor = livroDto.NameArtist,
+            //     AutorId = livroDto.AutorId,
+            //     Category = livroDto.Category
+            // };
 
-            if (!autorExiste)
-                return BadRequest(new { mensagem = "Autor não encontrado." });
+            // Busca ou cria o autor: AutorId usa um existente; NameAutor procura pelo nome e cria se não achar
+            if (livroDto.AutorId is null && string.IsNullOrWhiteSpace(livroDto.NameAutor))
+                return BadRequest(new { mensagem = "Informe AutorId ou NameAutor." });
+
+            Autor? autor;
+
+            if (livroDto.AutorId is not null)
+            {
+                autor = await _context.Autor.FindAsync(livroDto.AutorId);
+
+                if (autor == null)
+                    return BadRequest(new { mensagem = "Autor não encontrado." });
+            }
+            else
+            {
+                var nome = livroDto.NameAutor!.Trim();
+
+                // Ignora maiúsculas: "machado de assis" acha "Machado de Assis"
+                autor = await _context.Autor
+                    .FirstOrDefaultAsync(a => a.NameAutor.ToLower() == nome.ToLower());
+
+                // Não achou: cria um novo; o EF insere o autor antes do livro no mesmo SaveChanges
+                autor ??= new Autor { NameAutor = nome };
+            }
 
             var livros = new Livros
             {
                 NameBook = livroDto.NameBook,
                 Pages = livroDto.Pages,
-                // Autor = livroDto.NameArtist,
-                AutorId = livroDto.AutorId,
+                Autor = autor, // navegação em vez de AutorId: o autor novo ainda não tem Id
                 Category = livroDto.Category
             };
 
             _context.Livros.Add(livros);
             await _context.SaveChangesAsync();
 
+            // return CreatedAtAction(
+            //     nameof(GetId),
+            //     new { id = livros.Id },
+            //     livros
+            // );
+
+            // Devolve DTO: a entidade agora tem livros.Autor.Livros apontando de volta e o JSON entraria em ciclo
             return CreatedAtAction(
                 nameof(GetId),
                 new { id = livros.Id },
-                livros
+                new LivroResponseDTO
+                {
+                    Id = livros.Id,
+                    NameBook = livros.NameBook,
+                    Pages = livros.Pages,
+                    AutorId = autor.Id,
+                    NameAutor = autor.NameAutor,
+                    Category = livros.Category
+                }
             );
         }
 
