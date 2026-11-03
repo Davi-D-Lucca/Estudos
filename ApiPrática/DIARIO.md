@@ -57,11 +57,59 @@ ApiController faz a identificacao automatica dos ModelState, para poupar codigos
 
 `IActionResult` -> Mando 1 caixa mas não falo o que tem dentro, não falo o objeto que ta enviando na resposta
 
-`ActionResult<T>` -> mando a caixa e escrevo q o objeto é livro 
+`ActionResult<T>` -> mando a caixa e escrevo q o objeto é livro
 
  `[ProducesResponseType]`
 
 Quando a chamada da API falha ela volta 1 ProblemDetails, que da para personalizar
 
-- O que ainda não ficou claro:
+- O que ainda não ficou claro: Em que momento utilizar os middleware, acho que não estou com o pensamento critico ainda da utilização.
+- Onde apliquei no código (arquivo/commit): Aplicado no Program.cs, acredito que Swagger seja 1 forma de middleware
+
+### 2026-10-16— Codes HTTP, async/await / Paginação
+
+- O que estudei: Codes HTTP / Asyn/Await
+- O que entendi (com minhas palavras): Cada estado é importante para manutenção rapida do software
+
+2xx -> sucesso / 3xx-> desvio / 4xx -> erro de quem pediu / 5xx-> erro de quem respondeu
+
+Assincrona faz com que posso fazer várias Threads   ---  Async -> Task -> Await
+
+- O que ainda não ficou claro: Estou com dificuldade na paginação e no get com filtro.
 - Onde apliquei no código (arquivo/commit):
+
+### 2026-10-19— assunto
+
+- O que estudei: Paginação com filtro
+- O que entendi (com minhas palavras): da para utilizar o SKIP e o TAKE pelo proprio LINQ para ter os resultados limitados.  Transformar em `AsQueryable`() para que possa aceitar os filtros e ai fazer o var await com todos os filtros . Return com page, pageSize e os dados.
+
+Fluxo para seguir: IQueryable [Monta a consulta, filtros e ordenação]-> Skip + Take [Define quais registros serão retornados] -> ToListAsync() [Executa a consulta e materializa os resultados em uma lista]
+
+- O que ainda não ficou claro: Por enquanto está claro, porém alguns termos ainda de LINQ estão meio confusos, mas com o tempo de pratica da para melhorar
+- Onde apliquei no código (arquivo/commit):  feature/paginacao-livros
+
+### 2026-10-20— DbContext, DbSet e change tracker / Relacao 1:N / Manipulacao de Dados com o EF
+
+- O que estudei: Relacao 1:N
+- O que entendi (com minhas palavras): Entidade -> DTO -> ValueObject
+
+Pensa em ValueObject quando for sinonimos, quando for repetir varias vezes essas validações. Centralizar em 1 unico lugar, fica mais facil manutenção e os testes pesados raramente vão falhar. ValueObject > | Entidade > | DTO >
+
+Coloquei em pratica a relacao 1:N e manipulação de banco ja que antes era NameArtist e agora virou Autor.NameAutor, implementado tambem algumas validacoes para criacao do autor
+
+- O que ainda não ficou claro:
+- Onde apliquei no código (arquivo/commit): Feature/Autor-livros
+
+### 2026-10-27 — LINQ
+
+O que estudei: LINQ
+
+O que entendi (com minhas palavras): LINQ uma ferramente poderosa do C#
+
+Estou estudando sobre alguns deles: First, FirstOrDefault, Last, LastOrDefault, Single, SingleOrDefault
+
+Single -> Se eu colocar minha expressao e for duplicado, o single vai retornar exception
+
+O que ainda não ficou claro:
+
+Onde apliquei no código (arquivo/commit):
